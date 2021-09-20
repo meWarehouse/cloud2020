@@ -1,0 +1,44 @@
+#server.port=8081
+#spring.application.name=nacos-provider
+#spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+#management.endpoints.web.exposure.include=*
+
+ # spring.cloud.sentinel.datasource.ds2.nacos.data-id=sentinel
+ # spring.cloud.sentinel.datasource.ds2.nacos.group-id=DEFAULT_GROUP
+ # spring.cloud.sentinel.datasource.ds2.nacos.data-type=json
+ # spring.cloud.sentinel.datasource.ds2.nacos.rule-type=degrade
+
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloudalibaba-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719  #默认8719，假如被占用了会自动从8719开始依次+1扫描。直至找到未被占用的端口
+# spring.cloud.sentinel.datasource.ds2.nacos.data-id=sentinel
+# spring.cloud.sentinel.datasource.ds2.nacos.group-id=DEFAULT_GROUP
+# spring.cloud.sentinel.datasource.ds2.nacos.data-type=json
+# spring.cloud.sentinel.datasource.ds2.nacos.rule-type=degrade
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"

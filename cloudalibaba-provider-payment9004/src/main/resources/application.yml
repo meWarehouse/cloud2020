@@ -1,0 +1,17 @@
+server:
+  port: 9004
+
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      #nacos 注册中心
+      discovery:
+        server-addr: localhost:8848
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
